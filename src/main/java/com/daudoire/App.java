@@ -8,6 +8,12 @@ public class App
 {
     public static void main( String[] args )
     {
-        System.out.println( "Hello World!" );
+
+        //trigger a vulnerability by hardcoding credentials
+
+        String username = "user1";
+        String password = "password1";
+
+        System.out.println( "Hello "+username+"!\n Your password is "+password+"." );
     }
 }
