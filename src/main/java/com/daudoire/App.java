@@ -23,26 +23,30 @@ public class App {
 
         HttpClient httpClient = HttpClient.newHttpClient();
 
-        String authString = username + ":" + password;
-        String authEncoded = Base64.getEncoder().encodeToString(authString.getBytes());
-
-        String targetUrl = "http://localhost:8080/";
-
-        HttpRequest request = HttpRequest.newBuilder()
-                .uri(URI.create(targetUrl))
-                .header("Content-Type", "application/json")
-                .header("Authorization", "Basic " + authEncoded)
-                .GET()
-                .build();
-
-        try {
-            System.out.println("Fetching: " + targetUrl);
-            HttpResponse<String> response = httpClient.send(request, HttpResponse.BodyHandlers.ofString());
-
-        } catch (IOException ioe) {
-            ioe.printStackTrace();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        String authString = concatenate(username, password);
+                String authEncoded = Base64.getEncoder().encodeToString(authString.getBytes());
+        
+                String targetUrl = "http://localhost:8080/";
+        
+                HttpRequest request = HttpRequest.newBuilder()
+                        .uri(URI.create(targetUrl))
+                        .header("Content-Type", "application/json")
+                        .header("Authorization", "Basic " + authEncoded)
+                        .GET()
+                        .build();
+        
+                try {
+                    System.out.println("Fetching: " + targetUrl +" "+authString);
+                    HttpResponse<String> response = httpClient.send(request, HttpResponse.BodyHandlers.ofString());
+        
+                } catch (IOException ioe) {
+                    ioe.printStackTrace();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        
+            public static String concatenate(String username, String password) {
+        return username + ":"+ password;
     }
 }

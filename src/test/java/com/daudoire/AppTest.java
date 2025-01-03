@@ -13,8 +13,11 @@ public class AppTest
      * Rigorous Test :-)
      */
     @Test
-    public void shouldAnswerWithTrue()
+    public void concatenate()
     {
-        assertTrue( true );
+        String username = "user1";
+        String password = "password1";
+        String result = App.concatenate(username, password);
+        assertTrue( result.equals("user1:password1") );
     }
 }
