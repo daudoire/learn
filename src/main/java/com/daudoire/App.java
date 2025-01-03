@@ -26,7 +26,7 @@ public class App {
         String authString = username + ":" + password;
         String authEncoded = Base64.getEncoder().encodeToString(authString.getBytes());
 
-        String targetUrl = "https://localhost:8080/";
+        String targetUrl = "http://localhost:8080/";
 
         HttpRequest request = HttpRequest.newBuilder()
                 .uri(URI.create(targetUrl))
