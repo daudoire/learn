@@ -24,7 +24,7 @@ public class App {
 
         HttpClient httpClient = HttpClient.newHttpClient();
 
-        String authString = HCM_USERNAME + ":" + HCM_PASSWORD;
+        String authString = username + ":" + password;
         String authEncoded = Base64.getEncoder().encodeToString(authString.getBytes());
 
         String targetUrl = "https://localhost:8080/";
@@ -39,13 +39,10 @@ public class App {
         try {
             System.out.println("Fetching: " + targetUrl);
             HttpResponse<String> response = httpClient.send(request, HttpResponse.BodyHandlers.ofString());
-            if (response.statusCode() < 200 || response.statusCode() >= 300) {
-                sendResponse(exchange, response.statusCode(), "{\"error\":\"Error \",\"details\":\""
-                        + response.body().replace("\"", "'") + "\"}");
-                return;
-            }
 
-        } catch (IOException e) {
+        } catch (IOException ioe) {
+            ioe.printStackTrace();
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
